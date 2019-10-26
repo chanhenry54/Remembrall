@@ -1,0 +1,23 @@
+{
+  "name": "Remembrall",
+  "version": "1.0.0",
+  "description": "Event scheduling bot for the Discord chat application made for SD Hacks 2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanhenry54/Remembrall.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanhenry54/Remembrall/issues"
+  },
+  "homepage": "https://github.com/chanhenry54/Remembrall#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
