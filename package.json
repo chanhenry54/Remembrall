@@ -1,5 +1,5 @@
 {
-  "name": "Remembrall",
+  "name": "remembrall",
   "version": "1.0.0",
   "description": "Event scheduling bot for the Discord chat application made for SD Hacks 2019",
   "main": "index.js",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/chanhenry54/Remembrall#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
     "googleapis": "^39.2.0"
   }
 }
