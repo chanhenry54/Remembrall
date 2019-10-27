@@ -12,3 +12,4 @@ module.exports = async (client, msg) => {
     msg.react('📆')
         .catch(console.error);
 };
+
