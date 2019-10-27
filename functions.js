@@ -16,5 +16,6 @@ module.exports = {
         let eventPlace = eventData[0];
         let eventDate = eventData[1];
         let eventTime = eventData[2];
+        return [eventName, eventPlace, eventDate, eventTime];
     }
 };

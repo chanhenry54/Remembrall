@@ -7,7 +7,9 @@ module.exports = async (client, msg) => {
     // ignore bot messages
     if (msg.author.bot) { return; }
 
-    util.parseEvent(msg.content);
+    let parsedEvent = util.parseEvent(msg.content);
+
+    msg.channel.send(parsedEvent.toString());
 
     msg.react('📆')
         .catch(console.error);
