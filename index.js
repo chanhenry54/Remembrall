@@ -36,7 +36,7 @@ const TOKEN_PATH = 'token.json';
 fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Calendar API.
-    util.authorize(JSON.parse(content), addEvent);
+    authorize(JSON.parse(content), addEvent);
 });
 
 /**
