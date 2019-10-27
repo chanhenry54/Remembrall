@@ -7,10 +7,8 @@ module.exports = async (client, msg) => {
     // ignore bot messages
     if (msg.author.bot) { return; }
 
-    // util.parseEvent(msg.toString());
-    let text;
-    // Gets the string
-    text = msg.content;
-    msg.react(':calendar:');
+    // util.parseEvent(msg.content);
 
+    msg.react('📆')
+        .catch(console.error);
 };

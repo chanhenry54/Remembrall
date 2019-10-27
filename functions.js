@@ -12,5 +12,8 @@ module.exports = {
         // start parsing event place, date, time
         let eventData = eventStrArr[1].split(', ');
         if (eventData.length !== 3) { return; }
+        let eventPlace = eventData[0];
+        let eventDate = eventData[1];
+        let eventTime = eventData[2];
     }
 };
