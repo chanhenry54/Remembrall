@@ -8,6 +8,6 @@ module.exports = async (client, msg) => {
     var text;
     // Gets the string
     text = msg.content;
-    msg.react(':calendar:');
-
+    msg.react('📆');
+    
 };
