@@ -9,6 +9,10 @@ module.exports = async (client, msg) => {
 
     // util.parseEvent(msg.content);
 
+    var text;
+    // Gets the string
+    text = msg.content;
     msg.react('📆')
         .catch(console.error);
+
 };
