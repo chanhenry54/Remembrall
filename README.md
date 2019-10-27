@@ -4,7 +4,7 @@ Event scheduling bot for the Discord chat application made for SD Hacks 2019
 
 ## Contributors
 
-Henry Chan, Jeffrey Ho, Gaby Hourany, Stephanie Kwan
+Henry Chan, Jeffrey Ho, Gabrielle Hourany, Stephanie Kwan
 
 ## Technologies used
 
