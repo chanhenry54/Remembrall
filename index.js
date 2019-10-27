@@ -2,28 +2,9 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 require('dotenv').config();
-
 const client = new Discord.Client();
-
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-});
-
-// load events from /events folder
-fs.readdir('./events/', (err, files) => {
-    if (err) { return console.error(err); }
-    files.forEach(file => {
-        if (!file.endsWith('.js')) { return; }
-        const event = require(`./events/${file}`);
-        let eventName = file.split('.')[0];
-
-        client.on(eventName, event.bind(null, client));
-        delete require.cache[require.resolve(`./events/${file}`)];
-    });
-});
-
 const readline = require('readline');
-const {google} = require('googleapis');
+const { google } = require('googleapis');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/calendar'];
@@ -31,6 +12,23 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = 'token.json';
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+
+// load events from /events folder
+fs.readdir('./events/', (err, files) => {
+  if (err) { return console.error(err); }
+  files.forEach(file => {
+    if (!file.endsWith('.js')) { return; }
+    const event = require(`./events/${file}`);
+    let eventName = file.split('.')[0];
+
+    client.on(eventName, event.bind(null, client));
+    delete require.cache[require.resolve(`./events/${file}`)];
+  });
+});
 
 // Load client secrets from a local file.
 fs.readFile('credentials.json', (err, content) => {
@@ -46,9 +44,9 @@ fs.readFile('credentials.json', (err, content) => {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  const {client_secret, client_id, redirect_uris} = credentials.installed;
+  const { client_secret, client_id, redirect_uris } = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(
-      client_id, client_secret, redirect_uris[0]);
+    client_id, client_secret, redirect_uris[0]);
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, (err, token) => {
@@ -90,24 +88,24 @@ function getAccessToken(oAuth2Client, callback) {
 }
 
 var event = {
-    'summary': 'kmsIMMEDIATELY',
-    'location': '2329 Navarro Dr., Claremont, CA 91711',
-    'start': {
-      'dateTime': '2019-10-27T09:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
-    },
-    'end': {
-      'dateTime': '2019-10-29T17:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
-    },
-    };
+  'summary': 'kmsIMMEDIATELY',
+  'location': '2329 Navarro Dr., Claremont, CA 91711',
+  'start': {
+    'dateTime': '2019-10-27T09:00:00-07:00',
+    'timeZone': 'America/Los_Angeles',
+  },
+  'end': {
+    'dateTime': '2019-10-29T17:00:00-07:00',
+    'timeZone': 'America/Los_Angeles',
+  },
+};
 
 /**
  * add the event to the users google calendar
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function addEvent(auth) {
-  const calendar = google.calendar({version: 'v3', auth});
+  const calendar = google.calendar({ version: 'v3', auth });
   calendar.events.list({
     calendarId: 'primary',
     timeMin: (new Date()).toISOString(),
@@ -115,17 +113,17 @@ function addEvent(auth) {
     singleEvents: true,
     orderBy: 'startTime',
   }),
-  calendar.events.insert({
-    auth: auth,
-    calendarId: 'primary',
-    resource: event,
-  }, function(err, event) {
-    if (err) {
-      console.log('There was an error contacting the Calendar service: ' + err);
-      return;
-    }
-    console.log('Event created: %s', event.htmlLink);
-  }); 
+    calendar.events.insert({
+      auth: auth,
+      calendarId: 'primary',
+      resource: event,
+    }, function (err, event) {
+      if (err) {
+        console.log('There was an error contacting the Calendar service: ' + err);
+        return;
+      }
+      console.log('Event created: %s', event.htmlLink);
+    });
 }
 
 client.login(process.env.BOT_TOKEN);
