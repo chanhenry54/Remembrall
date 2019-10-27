@@ -5,6 +5,16 @@ require('dotenv').config();
 
 const client = new Discord.Client();
 
+const readline = require('readline');
+const { google } = require('googleapis');
+
+// If modifying these scopes, delete token.json.
+const SCOPES = ['https://www.googleapis.com/auth/calendar'];
+// The file token.json stores the user's access and refresh tokens, and is
+// created automatically when the authorization flow completes for the first
+// time.
+const TOKEN_PATH = 'token.json';
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -21,16 +31,6 @@ fs.readdir('./events/', (err, files) => {
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 });
-
-const readline = require('readline');
-const { google } = require('googleapis');
-
-// If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/calendar'];
-// The file token.json stores the user's access and refresh tokens, and is
-// created automatically when the authorization flow completes for the first
-// time.
-const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
 fs.readFile('credentials.json', (err, content) => {
@@ -107,7 +107,6 @@ var event = {
  * add the event to the users google calendar
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-
 
 function addEvent(auth) {
     const calendar = google.calendar({ version: 'v3', auth });
